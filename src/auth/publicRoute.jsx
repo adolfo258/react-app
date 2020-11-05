@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 
 const PublicRoute = ({ component: Component, ...rest }) => {
-  const token = localStorage.getItem("Authorized");
+  const token = localStorage.getItem("Authorization");
   return (
     <Route
       {...rest}
