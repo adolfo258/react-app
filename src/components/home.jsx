@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import UserList from "./userList";
 import RestaurantList from "./restaurantList";
