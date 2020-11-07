@@ -10,7 +10,6 @@ const MealListContainer = styled.div`
     margin: 20px;
     border: 1px solid #000;
     width: 150px;
-    height: fit-content;
     text-align: center;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
     transition: 0.3s;
@@ -32,9 +31,14 @@ const MealListContainer = styled.div`
     .card__name {
       font-size: 18px;
       font-weight: 700;
+      margin-bottom: 5px;
     }
 
     .card__rol {
+      color: #ff0033;
+    }
+
+    .card__manager {
       color: #ff0033;
     }
   }
@@ -63,6 +67,10 @@ const MealList = props => {
             <img src={`http://localhost:3001/${meals.avatar}`} alt="" />
             <div className="card__info">
               <p className="card__name">{meals.name}</p>
+              <i class="fas fa-user-tie"></i>
+              <p className="card__manager">
+                {meals.manager.name} {meals.manager.lastName}
+              </p>
             </div>
           </div>
         );

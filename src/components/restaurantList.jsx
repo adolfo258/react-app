@@ -10,7 +10,6 @@ const RestaurantListContainer = styled.div`
     margin: 20px;
     border: 1px solid #000;
     width: 150px;
-    height: fit-content;
     text-align: center;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
     transition: 0.3s;
@@ -32,10 +31,22 @@ const RestaurantListContainer = styled.div`
     .card__name {
       font-size: 18px;
       font-weight: 700;
+      margin-bottom: 10px;
     }
 
     .card__rol {
       color: #ff0033;
+    }
+
+    .card__manager {
+      color: #ff0033;
+    }
+
+    .card__meal {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 130px;
     }
   }
 `;
@@ -50,7 +61,9 @@ const RestaurantList = props => {
 
   const getRestaurants = () => {
     axios
-      .get("http://localhost:3001/restaurant", { headers: { Authorization: token } })
+      .get("http://localhost:3001/restaurant", {
+        headers: { Authorization: token },
+      })
       .then(res => setAllRestaurants(res.data))
       .catch(err => console.log(err));
   };
@@ -63,6 +76,16 @@ const RestaurantList = props => {
             <img src={`http://localhost:3001/${restaurant.avatar}`} alt="" />
             <div className="card__info">
               <p className="card__name">{restaurant.name}</p>
+              <div className="card__meal">
+                <i className="fas fa-utensils"></i>
+                {restaurant.meals.map(meal => {
+                  return <p>{meal.name}</p>;
+                })}
+                <i className="fas fa-user-tie"></i>
+                <p className="card__manager">
+                  {restaurant.managerId.name} {restaurant.managerId.lastName}
+                </p>
+              </div>
             </div>
           </div>
         );
